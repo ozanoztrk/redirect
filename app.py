@@ -9,7 +9,7 @@ import IP2Location, os, requests
 from flask import Flask, redirect, render_template, request
 
 
-LINK_TO_TURKISH_PAGE="https://mesc-is.org/exchange-rate/"
+LINK_TO_TURKISH_PAGE="https://mesc-is.org/yerelkayit/"
 LINK_TO_ENGLISH_PAGE="https://mesc-is.org/6718-2/"
 DATABASE_PATH='data/IP-COUNTRY-ISP-SAMPLE.BIN'
 
