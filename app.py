@@ -18,13 +18,14 @@ database = IP2Location.IP2Location(DATABASE_PATH)
 
 @app.route('/', methods=['GET'])
 def redirect_page():
-    if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
-        ip = request.environ['REMOTE_ADDR']
+    if 'X-Forwarded-For' in request.headers:
+        proxy_data = request.headers['X-Forwarded-For']
+        ip_list = proxy_data.split(',')
+        ip = ip_list[0]  # first address in list is User IP
     else:
-        ip = request.environ['HTTP_X_FORWARDED_FOR']
-    
+        ip = request.remote_addr  # For local development
+        
     print(ip)
-    print(type(ip))
     
     try:
         print('trying to match from api.country.is')
