@@ -25,10 +25,10 @@ def redirect_page():
     
     print(ip)
     try:
-        country_short=requests.get('https://api.country.is/'+str(ip)).json()['country']
+        country_short=requests.get('https://api.country.is/'+str(ip[0])).json()['country']
         print('api.country.is')
     except:
-        country_short=database.get_all(ip).country_short
+        country_short=database.get_all(ip[0]).country_short
         print('IP2Location')
 
     print('country:'+str(country_short))
