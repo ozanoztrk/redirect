@@ -24,12 +24,16 @@ def redirect_page():
         ip = request.environ['HTTP_X_FORWARDED_FOR']
     
     print(ip)
+    print(type(ip))
+    
     try:
+        print('trying to match from api.country.is')
         country_short=requests.get('https://api.country.is/'+str(ip[0])).json()['country']
-        print('api.country.is')
+        print('ip succesfully matched from api.country.is')
     except:
+        print('trying to match from IP2Location')
         country_short=database.get_all(ip[0]).country_short
-        print('IP2Location')
+        print('ip succesfully matched from IP2Location')
 
     print('country:'+str(country_short))
     if country_short == 'TR' :
