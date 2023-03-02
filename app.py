@@ -36,10 +36,9 @@ def redirect_page():
         print('ip succesfully matched from IP2Location')
 
     print('country:'+str(country_short))
-    if country_short == 'TR' :
-        ('TR')
+    if country_short in ['TR',('TR')]:
         return redirect(LINK_TO_TURKISH_PAGE)
-    else :
+    else:
         return redirect(LINK_TO_ENGLISH_PAGE)
 
 if __name__=="__main__":
