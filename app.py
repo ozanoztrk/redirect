@@ -29,11 +29,11 @@ def redirect_page():
     
     try:
         print('trying to match from api.country.is')
-        country_short=requests.get('https://api.country.is/'+str(ip[0])).json()['country']
+        country_short=requests.get('https://api.country.is/'+str(ip)).json()['country']
         print('ip succesfully matched from api.country.is')
     except:
         print('trying to match from IP2Location')
-        country_short=database.get_all(ip[0]).country_short
+        country_short=database.get_all(ip).country_short
         print('ip succesfully matched from IP2Location')
 
     print('country:'+str(country_short))
