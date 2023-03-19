@@ -15,7 +15,7 @@ app = Flask(__name__)
 database = IP2Location.IP2Location(DATABASE_PATH)
 
 @app.route('/', methods=['GET'])
-def redirect_page():
+def redirect_reg():
     if 'X-Forwarded-For' in request.headers:
         proxy_data = request.headers['X-Forwarded-For']
         ip_list = proxy_data.split(',')
@@ -41,7 +41,7 @@ def redirect_page():
         return redirect("https://mesc-is.org/6718-2/")
     
 @app.route('/yaz', methods=['GET'])
-def redirect_page():
+def redirect_yaz():
     if 'X-Forwarded-For' in request.headers:
         proxy_data = request.headers['X-Forwarded-For']
         ip_list = proxy_data.split(',')
