@@ -40,8 +40,8 @@ def redirect_reg():
     else:
         return redirect("https://mesc-is.org/6718-2/")
     
-@app.route('/yaz', methods=['GET'])
-def redirect_yaz():
+@app.route('/summerschool', methods=['GET'])
+def redirect_summerschool():
     if 'X-Forwarded-For' in request.headers:
         proxy_data = request.headers['X-Forwarded-For']
         ip_list = proxy_data.split(',')
