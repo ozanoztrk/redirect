@@ -38,9 +38,35 @@ def redirect_page():
 
     print('country:'+str(country_short))
     if country_short in ['TR',('TR')]:
-        return redirect(LINK_TO_TURKISH_PAGE)
+        return redirect("https://mesc-is.org/yerelkayit/")
     else:
-        return redirect(LINK_TO_ENGLISH_PAGE)
+        return redirect("https://mesc-is.org/6718-2/")
+    
+@app.route('/yaz', methods=['GET'])
+def redirect_page():
+    if 'X-Forwarded-For' in request.headers:
+        proxy_data = request.headers['X-Forwarded-For']
+        ip_list = proxy_data.split(',')
+        ip = ip_list[0]  # first address in list is User IP
+    else:
+        ip = request.remote_addr  # For local development
+        
+    print(ip)
+    
+    try:
+        print('trying to match from api.country.is')
+        country_short=requests.get('https://api.country.is/'+str(ip)).json()['country']
+        print('ip succesfully matched from api.country.is')
+    except:
+        print('trying to match from IP2Location')
+        country_short=database.get_all(ip).country_short
+        print('ip succesfully matched from IP2Location')
+
+    print('country:'+str(country_short))
+    if country_short in ['TR',('TR')]:
+        return redirect("https://mesc-is.org/application-tr/")
+    else:
+        return redirect("https://mesc-is.org/application-ss/")
 
 if __name__=="__main__":
     port =os.environ.get("PORT",5000)
